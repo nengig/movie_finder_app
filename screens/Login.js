@@ -1,22 +1,33 @@
-import { useState } from "react";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import { useState,useEffect } from "react";
+import { Text, View, TextInput, TouchableOpacity,Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from "../redux/actions";
 import { StackActions } from "@react-navigation/native";
 import globalStyles from "../shared/GlobalStyles";
 
-export const SignIn = ({ navigation }) => {
+export const Login = ({ navigation }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.users.currentUser)
     const errorMessage = useSelector((state) => state.users.message)
+    
     const validate = () => {
-        dispatch(loginUser(username, password))
-        if (currentUser != null) {
-            navigation.dispatch(StackActions.popTo("TabNav"))
+        if (username == " " || password == " " || !username || !password) {
+            Alert.alert("Error", "Empty Field(s)")
+        } else {
+            dispatch(loginUser(username, password))
+           
         }
     }
+    useEffect(() => {
+        // Once currentUser gets updated (non-null), navigate.
+        console.log("in login")
+        if (currentUser != null) {
+            console.log(currentUser)
+            navigation.dispatch(StackActions.popTo("TabNav"));
+        }
+    }, [currentUser]); 
     return (
         <View style={globalStyles.signInContainer}>
             {/*<Text style={globalStyles.heading}>Enter Your Email and Password</Text>*/}

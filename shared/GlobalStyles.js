@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 const globalStyles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: 'black',
+       /*  backgroundColor: 'black',
         padding: 0,
         margin: 0,
         maxHeight: "100%",
-        maxWidth: "100%"
+        maxWidth: "100%" */
     },
     container: {
         // padding: 16,
@@ -16,14 +16,14 @@ const globalStyles = StyleSheet.create({
         // backgroundColor: 'black'
     },
 
-    headerStyle: {
+    /* headerStyle: {
         width: '100%',
         padding: 10,
         // color: 'deepskyblue',
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center'
-    },
+    }, */
     movieCard:{
         maxWidth: 160,
         // backgroundColor: "gray",
@@ -91,6 +91,60 @@ const globalStyles = StyleSheet.create({
     },
     errorMessage:{
         color:'red'
+    },
+    profile:{
+        backgroundColor:'white',
+        borderRadius:200,
+        padding:15,
+    },
+    userDetailsContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        width:'102%',
+        padding:16,
+        borderRadius:0,
+        paddingHorizontal:15,
+        paddingVertical:20,
+        opacity:0.8,
+        borderBottomWidth:1,
+        borderBottomColor:'black'
+    },
+    userDetailDesc:{
+        //opacity:0.5,
+        fontStyle:'italic',
+        fontWeight:200
+
+    },
+    userDetail:{
+        fontWeight:400
+    },
+    userName:{
+        fontSize:30,
+        paddingVertical:10,
+        fontWeight:300
+    },
+    userActionButtons:{
+        margin:6,
+        padding:6,
+        borderRadius:5,
+        width:'102%',
+        alignItems:'center',
+        height:40,
+        borderBottomColor:'white',
+        borderBottomWidth:2
+
+    },
+    userActionButtonsText:{
+        color:'white',
+        fontWeight:200,
+        fontSize:16
+        
+    },
+    userActionButtonsContainer:{
+        alignItems: 'center',
+        width:'101%',
+        justifyContent:'flex-end',
+        backgroundColor:'black',
     }
 });
 

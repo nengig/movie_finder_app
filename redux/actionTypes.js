@@ -1,8 +1,13 @@
 export const ADD_USER = "ADD_USER";
+export const ADD_USER_ERROR = "ADD_USER_ERROR";
+
 export const DELETE_USER = "DELETE_USER";
-export const LOGIN_USER = "LOGIN_USER"
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR"
+
 export const LOGOUT_USER = "LOGOUT_USER"
 export const UPDATE_PASSWORD = "UPDATE_PASSWORD"
+export const FETCH_USER = "FECTCH_USER"
 
 export const MOVIE_DETAILS_REQ = 'FETCH_MOVIE_DETAILS_REQUEST';
 export const MOVIE_DETAILS_SUCC = 'FETCH_MOVIE_DETAILS_SUCCESS';
