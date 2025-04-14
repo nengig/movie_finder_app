@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import { useState, useEffect } from "react";
+import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { addUser, loginUser } from "../redux/actions";
+import { addUser } from "../redux/actions";
 import { StackActions } from "@react-navigation/native";
 import globalStyles from "../shared/GlobalStyles";
 
-export const SignUp = ({ navigation }) => {
+export const CreateAccount  = ({ navigation }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
@@ -14,20 +14,35 @@ export const SignUp = ({ navigation }) => {
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.users.currentUser)
     const errorMessage = useSelector((state) => state.users.message)
-    const validate = () => {
-        const newUser ={
-            username: username,
-            password: password,
-            name: name,
-            email: email,
-            phone: phone,
-            joinedOn: `${new Date().toUTCString()}`
-        }
-        dispatch(addUser(newUser))
-        if (currentUser != null) {
-            navigation.dispatch(StackActions.popTo("TabNav"))
+    const validate = async () => {
+        if (username == " " || password == " " || name == " " || email == " " || phone == " " ||
+            !username || !password || !name || !email || !phone) {
+            Alert.alert("Error", "Empty Field(s)")
+        } else {
+            const newUser = {
+                username: username,
+                password: password,
+                name: name,
+                email: email,
+                phone: phone,
+                joinedOn: `${new Date().toUTCString()}`,
+                favourite: [],
+                watchedList: [],
+                toWatch: [],
+                reveiws: []
+            }
+            dispatch(addUser(newUser))
+            
         }
     }
+    useEffect(() => {
+        // Once currentUser gets updated (non-null), navigate.
+        console.log("in signup")
+        if (currentUser != null ) {
+            console.log(currentUser)
+            navigation.dispatch(StackActions.popTo("TabNav"));
+        }
+    }, [currentUser]);
     return (
         <View style={globalStyles.signInContainer}>
             {currentUser === null && <Text style={globalStyles.errorMessage}>{errorMessage}</Text>}
@@ -58,11 +73,11 @@ export const SignUp = ({ navigation }) => {
                 value={phone}
                 onChangeText={setPhone}
                 placeholder='Enter your phone number '
-                keyboardType='default'
+                keyboardType='number-pad'
                 maxLength={10}
                 style={globalStyles.input}
             />
-            
+
             <TextInput
                 value={password}
                 onChangeText={setPassword}
@@ -75,7 +90,7 @@ export const SignUp = ({ navigation }) => {
             <View style={globalStyles.signInSwitchContainer}>
                 <Text>Have an account?</Text>
                 <TouchableOpacity
-                    onPress={() => navigation.dispatch(StackActions.popTo("SignIn"))}>
+                    onPress={() => navigation.dispatch(StackActions.popTo("Login"))}>
                     <Text style={globalStyles.signInSwitchButtonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>

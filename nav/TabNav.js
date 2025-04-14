@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import DiscoverMovieScreen from '../screens/DiscoverMovieScreen';
 import MyMoviesScreen from '../screens/MyMoviesScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,16 +11,7 @@ const Tab = createBottomTabNavigator();
 export default function TabNav() {
 
   const tabOptions = ({ route }) => ({
-
-    headerStyle: {
-      height: 80,
-      backgroundColor: '#f8f8f8',
-
-    },
-    headerTitleStyle: {
-      fontSize: 20,
-    },
-    // headerShown: false,
+    headerShown: false,
     tabBarActiveTintColor: 'indigo',
     tabBarInactiveTintColor: 'gray',
     tabBarStyle: [
@@ -45,7 +35,7 @@ export default function TabNav() {
       return (
         <Icon name={iconName} color={focused ? "indigo" : "gray"} size={30} />
       )
-    })
+    }),
   });
 
   return (
