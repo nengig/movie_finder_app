@@ -2,7 +2,7 @@ import {
     MOVIE_DETAILS_REQ,
     MOVIE_DETAILS_SUCC,
     MOVIE_DETAILS_FAIL,
-  } from '../actionTypes';
+  } from '../actionTypes/userActionTypes';
   
   const initialState = {
     loading: false,

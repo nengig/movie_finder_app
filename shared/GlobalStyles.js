@@ -52,100 +52,188 @@ const globalStyles = StyleSheet.create({
         fontWeight: "bold",
         color: "white"
     },
-    signInContainer:{
-        alignItems: "center",
-        padding: 16,
-        width: '100%',
-    },
-    input:{
-        height: 40,
-        width: '80%',
-        padding: 10,
-        marginVertical:8,
-        borderWidth: 2,
-        borderRadius:10,
-        borderColor: '#051923'
-    },
-    signInbutton:{
-        padding:'2%',
-        borderRadius:8,
-        alignItems:'center',
-        width:'80%',
-        backgroundColor:'black',
-        marginVertical:5
-    },
-    signInbuttonText:{
-        fontSize:20,
-        color: 'white',
-        alignItems:'center',
-        fontWeight:'bold'
-    },
-    signInSwitchButtonText: {
-        marginLeft:5,
-        color:'blue',
-        textDecorationLine:'underline',
-        
-    },
-    signInSwitchContainer:{
-        flexDirection:'row',
-    },
-    errorMessage:{
-        color:'red'
-    },
     profile:{
         backgroundColor:'white',
         borderRadius:200,
         padding:15,
     },
-    userDetailsContainer:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        width:'102%',
-        padding:16,
-        borderRadius:0,
-        paddingHorizontal:15,
-        paddingVertical:20,
-        opacity:0.8,
-        borderBottomWidth:1,
-        borderBottomColor:'black'
-    },
-    userDetailDesc:{
-        //opacity:0.5,
-        fontStyle:'italic',
-        fontWeight:200
 
-    },
-    userDetail:{
-        fontWeight:400
-    },
-    userName:{
-        fontSize:30,
-        paddingVertical:10,
-        fontWeight:300
-    },
-    userActionButtons:{
-        margin:6,
-        padding:6,
-        borderRadius:5,
-        width:'102%',
-        alignItems:'center',
-        height:40,
-        borderBottomColor:'white',
-        borderBottomWidth:2
 
+    userDetailsContainer: {
+        marginBottom: 15,
+        backgroundColor: '#1c1c1e',
+        padding: 15,
+        borderRadius: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 3,
     },
-    userActionButtonsText:{
-        color:'white',
-        fontWeight:200,
-        fontSize:16
-        
+    
+    userDetailDesc: {
+        fontSize: 14,
+        color: '#8e8e93',
+        textTransform: 'uppercase',
+        marginBottom: 3,
     },
-    userActionButtonsContainer:{
+    
+    userDetail: {
+        fontSize: 16,
+        color: '#f0f0f0',
+        fontWeight: '500',
+    },
+    
+    userActionButtonsContainer: {
+        marginTop: 25,
+        width: '90%',
+        gap: 15,
+    },
+    
+    userActionButtons: {
+        paddingVertical: 12,
+        borderRadius: 10,
         alignItems: 'center',
-        width:'101%',
-        justifyContent:'flex-end',
-        backgroundColor:'black',
-    }
+    },
+    
+    userActionButtonsText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    
+    userName: {
+        fontSize: 22,
+        fontWeight: '700',
+        color: '#00ccf7',
+    },
+
+    signInContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 30,
+    },
+    
+    heading: {
+        fontSize: 26,
+        fontWeight: 'bold',
+    },
+    
+    input: {
+        width: '100%',
+        backgroundColor: '#1c1c1e',
+        padding: 14,
+        marginBottom: 15,
+        borderRadius: 10,
+        fontSize: 16,
+        color: '#fff',
+    },
+    
+    signInbutton: {
+        width: '100%',
+        padding: 14,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    
+    signInbuttonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#000',
+    },
+    
+    signInSwitchContainer: {
+        flexDirection: 'row',
+        marginTop: 20,
+        alignItems: 'center',
+    },
+    
+    signInSwitchButtonText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#00ccf7',
+        marginLeft: 5,
+    },
+    
+    errorMessage: {
+        color: "#ff4d4d",
+        marginBottom: 10,
+        textAlign: 'center',
+        fontSize: 14,
+    },
+
+    inputWithIcon: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#1c1c1e",
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        marginBottom: 15,
+        width: "100%",
+    },
+    
+    iconStyle: {
+        marginRight: 8,
+    },
+    
+    inputText: {
+        flex: 1,
+        color: "#fff",
+        fontSize: 16,
+        paddingVertical: 14,
+    },
+    
+    //card style for vertical flatlist
+
+    card: {
+        flexDirection: 'row',
+        margin: 8,
+        backgroundColor: 'black',
+        borderRadius: 10,
+        overflow: 'hidden',
+        elevation: 3,
+        borderWidth: 0.5,
+        borderColor: "#f0f0f0"
+    },
+    infoInnerContainer:{
+        flex: 1,
+        justifyContent: 'flex-start'
+    },
+    image: {
+        width: 100,
+        height: 150,
+    },
+    noImage: {
+        width: 100,
+        height: 150,
+        backgroundColor: '#ccc',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    info: {
+        flex: 1,
+        padding: 10,
+        justifyContent: 'space-between'
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: "#f0f0f0"
+    },
+    overview: {
+        fontSize: 12,
+        color: '#555',
+        color: "#f0f0f0"
+    },
+    rating: {
+        fontSize: 14,
+        color: '#f39c12',
+    },
+    //ends
+    
+    
 });
 
 export default globalStyles;

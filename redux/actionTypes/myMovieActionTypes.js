@@ -1,0 +1,1 @@
+export const GET_USER_MOVIE_LISTS = "GET_USER_MOVIE_LISTS";
