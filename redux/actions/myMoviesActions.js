@@ -19,37 +19,41 @@ const user_collection_name = "users";
 const user_movie_list_collection_name = "movies";
 // const collectionRef = collection(db, collection_name);
 
-export const getUserMovieList = (listName, userId) => async dispatch => {
+export const getUserMovieList = (listName) => async (dispatch, getState) => {
     try {
         let searchCondition;
+        const userId  = getState().users.currentUser.id;
+        console.log(userId);
 
         if (listName == "favourite") {
             searchCondition = where(listName, "==", true)
         }
         else if (listName == "rating") {
-            searchCondition = where(listName, "!=", "")
+            searchCondition = where(listName, ">", 0)
         }
-        else if (listName == "watched" || listName == "to watch") {
+        else if (listName == "watched" || listName == "toWatch") {
             searchCondition = where("status", "==", listName)
         }
 
-        // console.log("search condition ", searchCondition);
-
-
         const userMovieListRef = collection(db, user_collection_name, userId, user_movie_list_collection_name);
         const q = query(userMovieListRef, searchCondition);
-        const querySnapshot = await getDocs(q);
 
-        const movies = querySnapshot.docs.map((doc) => {
-            return { id: doc.id, ...doc.data() };
-        });
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const movies = [];
+            querySnapshot.forEach((doc) => {
+              const article = doc.data();
+              movies.push({ id: doc.id, ...article });
+            });
+      
+            dispatch({
+                type: GET_USER_MOVIE_LISTS,
+                payload: movies,
+            });
+          });
 
-        console.log(movies)
+          return unsubscribe;
 
-        dispatch({
-            type: GET_USER_MOVIE_LISTS,
-            payload: movies,
-        });
+        
 
     } catch (error) {
         // dispatch({

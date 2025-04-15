@@ -71,11 +71,11 @@ export const addUser = (user) => async dispatch => {
       console.log(`trying to save ${user.name} to db`)
       const docRef = await addDoc(collectionRef, user)
       console.log(`user added`)
-      const {password, ...filteredUser} = user
+      const { password, ...filteredUser } = user
       dispatch({
         type: ADD_USER,
         payload: {
-          id:docRef.id,
+          id: docRef.id,
           ...filteredUser
         }
       })
@@ -86,17 +86,41 @@ export const addUser = (user) => async dispatch => {
 }
 export const deleteUser = (docID) => async dispatch => {
   try {
-    console.log(`trying to delete user with doc id ${docID}`)
+    // console.log(`trying to delete user with doc id ${docID}`)
 
-    const docRef = doc(collectionRef, docID)
-    await deleteDoc(docRef)
+    // const docRef = doc(collectionRef, docID)
+    // await deleteDoc(docRef)
 
-    console.log(`user deleted`)
+    // console.log(`user deleted`)
+
+    // dispatch({
+    //   type: DELETE_USER,
+    //   payload: docID
+    // })
+
+    console.log(`Trying to delete user and their movie list with ID: ${docID}`);
+
+    // Reference to the user's movie list subcollection
+    const userMovieListRef = collection(db, 'users', docID, 'movies');
+
+    // Get all documents in the movie list subcollection
+    const querySnapshot = await getDocs(userMovieListRef);
+
+    // Iterate over all documents in the subcollection and delete them
+    querySnapshot.forEach(async (docSnapshot) => {
+      await deleteDoc(docSnapshot.ref);
+      console.log(`Deleted movie list document with ID: ${docSnapshot.id}`);
+    });
+
+    // Now delete the user document itself
+    const userDocRef = doc(db, 'users', docID);
+    await deleteDoc(userDocRef);
+    console.log(`Deleted user document with ID: ${docID}`);
 
     dispatch({
       type: DELETE_USER,
       payload: docID
-    })
+    });
   } catch (error) {
     console.error("Error deleting user: ", error);
   }
@@ -115,7 +139,7 @@ export const loginUser = (username, password) => async dispatch => {
       console.log(`trying to log in user`)
       const userDoc = querySnapshot.docs[0]
       //create a new user without password information
-      const {password, ...filteredUser} = userDoc.data()
+      const { password, ...filteredUser } = userDoc.data()
       const currUser = {
         id: userDoc.id,
         ...filteredUser
@@ -138,12 +162,12 @@ export const loginUser = (username, password) => async dispatch => {
     console.log(`error logging user in: `, error)
   }
 }
-export const logoutUser = () => async dispatch =>{
+export const logoutUser = () => async dispatch => {
   console.log("logging user out")
   dispatch({
     type: LOGOUT_USER
   })
- 
+
 }
 export const updatePassword = (userId, newPassword) => async dispatch => {
   try {

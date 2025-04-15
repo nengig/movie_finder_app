@@ -194,7 +194,7 @@ const globalStyles = StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         elevation: 3,
-        borderWidth: 0.5,
+        borderWidth: 0.2,
         borderColor: "#f0f0f0"
     },
     infoInnerContainer:{

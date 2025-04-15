@@ -6,7 +6,6 @@ import globalStyles from "../shared/GlobalStyles";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserMovieList } from "../redux/actions/myMoviesActions";
 
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185/";
 
 //My Movies tab Screen
 const MyMoviesScreen = ({ navigation }) => {
@@ -18,21 +17,21 @@ const MyMoviesScreen = ({ navigation }) => {
     const [items, setItems] = useState([
         { label: 'Favourites', value: 'favourite' },
         { label: 'Watched movies', value: 'watched' },
-        { label: 'Movies to watch', value: 'to watch' },
+        { label: 'Movies to watch', value: 'toWatch' },
         { label: 'Rated Movies', value: 'rating' },
     ]);
 
     const [loading, setLoading] = useState(true); // Add loading state
 
     const fetchUsersSavedMovies = () => {
-        //50239Ny3RQVo7MGztSSF
-        // console.log("Saved movies: ", value);
         dispatch(getUserMovieList(value, "50239Ny3RQVo7MGztSSF"));
     }
 
     useEffect(() => {
         setLoading(true);
-        fetchUsersSavedMovies();
+        const unsubscribe = fetchUsersSavedMovies();
+
+        return () => unsubscribe;
     }, [value]);
 
     const movies = useSelector((state) => state.userMovies.movies);
@@ -78,9 +77,9 @@ const MyMoviesScreen = ({ navigation }) => {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
                         <TouchableOpacity style={globalStyles.card} onPress={() => handleOnPress(item.id)}>
-                            {item.poster_path ? (
+                            {item.posterLink ? (
                                 <Image
-                                    source={{ uri: IMAGE_BASE_URL + item.poster_path }}
+                                    source={{ uri: item.posterLink }}
                                     style={globalStyles.image}
                                 />
                             ) : (
@@ -89,10 +88,10 @@ const MyMoviesScreen = ({ navigation }) => {
                             <View style={globalStyles.info}>
                                 <View style={globalStyles.infoInnerContainer}>
                                     <Text style={globalStyles.title}>{item.title}</Text>
-                                    <Text numberOfLines={6} style={globalStyles.overview}>{item.overview}</Text>
+                                    <Text numberOfLines={6} style={globalStyles.overview}>{item.description}</Text>
                                 </View>
-                                {value == "rating" && (<Text style={styles.userRating}>User Rating: 🎬 {item.rating}</Text>)}
-                                <Text style={globalStyles.rating}>⭐ {item.vote_average}</Text>
+                                {value == "rating" && (<Text style={styles.userRating}>User Rating: 🎬 {item.rating}/5</Text>)}
+                                <Text style={globalStyles.rating}>⭐ {item.tmdbRating}</Text>
                             </View>
                         </TouchableOpacity>
                     )}

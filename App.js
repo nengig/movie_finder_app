@@ -3,10 +3,12 @@ import TabNav from './nav/TabNav';
 import { Login } from './screens/Login.js';
 import { PasswordUpdate } from './screens/PasswordUpdate.js';
 import { CreateAccount } from './screens/CreateAccount.js';
+import MovieDetails from './screens/mediaDetails.js';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StackActions, NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
+import { StatusBar } from 'expo-status-bar';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,12 +34,14 @@ export default function App() {
 
   return (
     <Provider store={store}>
+      <StatusBar style="light" translucent backgroundColor="transparent" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Group screenOptions={headerOptions}>
             <Stack.Screen component={TabNav} name="TabNav" options={{ headerShown: false }} />
             <Stack.Screen component={Login} name="Login" />
             <Stack.Screen component={CreateAccount} name="SignUp" />
+            <Stack.Screen component={MovieDetails} name="Media Details" />
             <Stack.Screen component={PasswordUpdate} name="UpdatePassword" />
           </Stack.Group>
         </Stack.Navigator>

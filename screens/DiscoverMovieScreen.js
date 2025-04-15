@@ -8,46 +8,6 @@ import { useEffect, useState } from "react";
 //Homepage or Discover Page
 const DiscoverMovieScreen = () => {
 
-    // const dispatch = useDispatch();
-    // const [loading, setLoading] = useState(true);
-
-
-
-    // const fetchAllData = () => {
-    //     // const promises = [
-    //     dispatch(getPopularMovies()),
-    //         dispatch(getTopRatedMovies()),
-    //         dispatch(getNowPlayingMovies()),
-    //         dispatch(getUpcomingMovies()),
-    //         dispatch(getActionMovies()),
-    //         dispatch(getComedyMovies()),
-    //         dispatch(getCrimeMovies()),
-    //         dispatch(getThrillerMovies()),
-    //         dispatch(getHorrorMovies())
-    //     // ]
-    //     // return promises;
-    // }
-
-    // useEffect(() => {
-    //     // const promises = 
-    //     fetchAllData();
-
-    //     // return () => {
-    //     //     promises.forEach(promise => promise);
-    //     // }
-
-    //     setLoading(false);
-    // }, [dispatch])
-    // const movies = useSelector((state) => state.movies.movies);
-
-    // if (loading) {
-    //     return (
-    //         <View style={[globalStyles.container, { flex: 1, justifyContent: "center", alignItems: "center" }]}>
-    //             <ActivityIndicator size="large" color="#6200EE" />
-    //         </View>
-    //     );
-    // }
-
 
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
