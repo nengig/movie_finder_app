@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { ADD_USER, ADD_USER_ERROR, DELETE_USER, LOGIN_USER, LOGIN_USER_ERROR, LOGOUT_USER, UPDATE_PASSWORD } from "../actionTypes";
+import { ADD_USER, ADD_USER_ERROR, DELETE_USER, LOGIN_USER, LOGIN_USER_ERROR, LOGOUT_USER, UPDATE_PASSWORD } from "../actionTypes/userActionTypes";
 
 const initialState = {
     currentUser: null,

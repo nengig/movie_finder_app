@@ -7,14 +7,14 @@ import {
   FETCH_USER,
   ADD_USER_ERROR,
   LOGIN_USER_ERROR
-} from "./actionTypes";
+} from "../actionTypes/userActionTypes";
 import {
   MOVIE_DETAILS_REQ,
   MOVIE_DETAILS_SUCC,
   MOVIE_DETAILS_FAIL,
-} from './actionTypes';
+} from '../actionTypes/userActionTypes';
 
-import { db } from "../config/firebaseConfig";
+import { db } from "../../config/firebaseConfig";
 import {
   collection,
   addDoc,
@@ -120,6 +120,8 @@ export const loginUser = (username, password) => async dispatch => {
         id: userDoc.id,
         ...filteredUser
       }
+
+      console.log(currUser)
       dispatch({
         type: LOGIN_USER,
         payload: currUser
