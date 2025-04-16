@@ -19,7 +19,7 @@ const MovieModal = ({
 
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
-    { label: 'Select...', value: '' },
+    { label: 'Select...', value: '', disabled: true },
     { label: 'Watched', value: 'watched' },
     { label: 'Plan to Watch', value: 'toWatch' },
   ]);
