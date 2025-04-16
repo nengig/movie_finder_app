@@ -1,5 +1,6 @@
 import {
-    GET_USER_MOVIE_LISTS
+    GET_USER_MOVIE_LISTS,
+    CLEAR_USER_MOVIE_LIST,
 } from "../actionTypes/myMovieActionTypes";
 
 
@@ -65,3 +66,6 @@ export const getUserMovieList = (listName) => async (dispatch, getState) => {
     }
 }
 
+export const clearUserMovieList = () => ({
+    type: CLEAR_USER_MOVIE_LIST
+})

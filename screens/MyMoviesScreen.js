@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import globalStyles from "../shared/GlobalStyles";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserMovieList } from "../redux/actions/myMoviesActions";
+import { clearUserMovieList, getUserMovieList } from "../redux/actions/myMoviesActions";
 
 
 //My Movies tab Screen
@@ -17,7 +17,7 @@ const MyMoviesScreen = ({ navigation }) => {
     const [items, setItems] = useState([
         { label: 'Favourites', value: 'favourite' },
         { label: 'Watched movies', value: 'watched' },
-        { label: 'Movies to watch', value: 'toWatch' },
+        { label: 'Plan to watch', value: 'toWatch' },
         { label: 'Rated Movies', value: 'rating' },
     ]);
 
@@ -31,7 +31,13 @@ const MyMoviesScreen = ({ navigation }) => {
         setLoading(true);
         const unsubscribe = fetchUsersSavedMovies();
 
-        return () => unsubscribe;
+        return () => {
+            dispatch(clearUserMovieList());
+            if (typeof unsubscribe === 'function') {
+                unsubscribe(); // <- call the function
+            }
+        }
+
     }, [value]);
 
     const movies = useSelector((state) => state.userMovies.movies);
@@ -127,7 +133,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     noMoviesContainerText: {
-        color: "#f0f0f0", 
+        color: "#f0f0f0",
     },
     loaderContainer: {
         flex: 1,
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
     userRating: {
         fontSize: 14,
         fontWeight: "bold",
-        color: "#f0f0f0", 
+        color: "#f0f0f0",
         marginTop: 5,
         marginBottom: 10
     },
